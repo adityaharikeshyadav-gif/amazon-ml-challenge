@@ -1,0 +1,17 @@
+# Datasets (Too large for GitHub)
+dataset/
+unzipped_dataset/
+*.zip
+
+# Generated Outputs
+output/
+work/
+
+# Specific Markdown Documents
+Documentation_template.md
+steps.md
+documantation.md
+
+# Python Cache
+__pycache__/
+*.pyc
