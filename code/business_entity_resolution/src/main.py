@@ -298,7 +298,14 @@ def main():
             if probs:
                 X_test = pd.DataFrame(probs)
                 pred_probs = final_clf.predict_proba(X_test)[:, 1]
-                matches = [test_pool_id_to_str(g) for g, p in zip(cand_globals, pred_probs) if p >= avg_th]
+                
+                # STRICT PRECISION FILTER: Only take the absolute best match, and only if prob >= 0.90
+                best_idx = np.argmax(pred_probs)
+                if pred_probs[best_idx] >= 0.90:
+                    best_global = cand_globals[best_idx]
+                    matches = [test_pool_id_to_str(best_global)]
+                else:
+                    matches = []
             else:
                 matches = []
             
